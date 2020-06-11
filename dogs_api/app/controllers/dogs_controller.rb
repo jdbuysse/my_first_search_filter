@@ -1,8 +1,13 @@
 class DogsController < ApplicationController
 
   def index
-    @dogs = Dog.all
-    render json: @dogs
+    if params["name"]
+      @dogs = Dog.where(name: params["name"].downcase.capitalize)
+      render json: @dogs
+    else
+      @dogs = Dog.all
+      render json: @dogs
+    end
   end
 
 end

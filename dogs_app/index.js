@@ -1,7 +1,21 @@
+
+
+
 console.log("JavaScript loaded");
 
-baseURL = "http://localhost:3000";
-dogsURL = `${baseURL}/dogs`;
+const searchParams = new URLSearchParams(window.location.search);
+
+//'name' from the form
+const searchName = searchParams.get("name");
+
+
+const baseURL = "http://localhost:3000";
+let dogsURL = `${baseURL}/dogs`;
+
+//this will automatically get put into params for rails
+if (searchName) {
+  dogsURL = `${dogsURL}?name=${searchName}`
+}
 
 const dogsSection = document.querySelector("section");
 
